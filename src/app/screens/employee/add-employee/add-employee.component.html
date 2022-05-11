@@ -39,7 +39,7 @@
               </mat-form-field>
 
               <div fxLayout="row" fxLayoutAlign="center center">
-                <button mat-raised-button id="btnClass" (click) = "nextStep()">
+                <button mat-raised-button id="btnClass" (click) = "nextStep()" [disabled]="!employeeForm.controls.basicInformation.valid">
                   <mat-icon class="icon">arrow_right_alt</mat-icon>Next
                 </button>
               </div>
@@ -83,7 +83,7 @@
                 <mat-icon class="icon">keyboard_backspace</mat-icon>Previous
               </button>
 
-              <button mat-raised-button id="btnClass" (click) = "nextStep()">
+              <button mat-raised-button id="btnClass" (click) = "nextStep()" [disabled]="!employeeForm.controls.addressInformation.valid">
                 <mat-icon class="icon">arrow_right_alt</mat-icon>Next
               </button>
             </div>
@@ -137,7 +137,7 @@
           <mat-icon class="icon">keyboard_backspace</mat-icon>Previous
         </button>
 
-        <button mat-raised-button id="saveButton" (click) = "saveEmployee()">
+        <button mat-raised-button id="saveButton" (click) = "saveEmployee()" [disabled]="!employeeForm.controls.skills.valid">
           <mat-icon class="icon">save</mat-icon>Save
         </button>
       </div>
