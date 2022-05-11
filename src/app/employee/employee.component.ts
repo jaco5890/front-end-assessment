@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-
+  employeeList = [];
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addEmployee() {
-    
+  employeeAdded() {
+    console.log('triggered on the home screen')
   }
 
 }

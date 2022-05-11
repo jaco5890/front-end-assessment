@@ -1,18 +1,18 @@
-<mat-card class="white-bg mat-elevation-z8 m-0 p-0">
-    <mat-card-title-group class="p-2 " [ngStyle]="">
-        <mat-card-title style="flex-wrap: wrap;">
-            <div style="font-size: medium !important;margin-top: 5px;margin-left: 5px;">
+<mat-card class="card">
+    <mat-card-title-group class="title-group">
+        <mat-card-title class="title-container">
+            <div class="title">
                 {{title}}
             </div>
         </mat-card-title>
         <div>
             <ng-content select="[id=titleExtras]"></ng-content>
-            <card-button class="mr-4" [icon]="icon" (buttonClicked)="onButtonClicked($event)" *ngIf="showButton">
+            <card-button class="button" [icon]="icon" (buttonClicked)="onButtonClicked($event)" *ngIf="showButton">
             </card-button>
         </div>
     </mat-card-title-group>
 
-    <mat-card-content class="p-6">
+    <mat-card-content class="card-content">
         <ng-template #content>
             <ng-content #body></ng-content>
         </ng-template>

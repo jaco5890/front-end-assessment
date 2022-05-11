@@ -1,0 +1,44 @@
+<div class="body" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="text">There are 4 employees</span>
+
+        <button mat-raised-button matTooltip="Add new employee" class="add-btn" (click)="addEmployee()">
+            <mat-icon>add</mat-icon>
+            Add new employee
+        </button>
+    </div>
+
+    <div class="employee-card-container">
+        <app-card hasButton="true" name="Filter/Search for employees" fxFlex="100" fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="15px">
+                <mat-form-field appearance="outline" id="input-field" style="width: 100%;">
+                    <mat-label>Search</mat-label>
+                    <input matInput id = ''>
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline"  id="input-field" style="width: 100%;">
+                <mat-label>Filter by</mat-label>
+                <mat-select style="color: black;" [(value)] ="selectedFilter">
+                    <mat-option *ngFor="let selectedFilter of filterList" [value]="selectedFilter" >
+                    {{selectedFilter}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="column">
+                <div *ngFor="let employee of employeeList;let index = index;" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="employee-row">
+                        <span id="index">{{index + 1}}</span>
+                        <span class="information">{{employee.firstName}}</span>
+                        <span class="information">{{employee.lastName}}</span>
+                        <span class="information">{{employee.cellphone}}</span>
+                    </div>
+                </div>
+            </div>
+         </app-card>  
+    </div>
+
+    <add-employee (closed)="showAddEmployee = false" (employeeAdded)="addedEmployee($event)"  title="Add " [employee]="{}" *ngIf="showAddEmployee">
+    </add-employee>
+</div>

@@ -1,0 +1,22 @@
+.background {
+    background-color: #8860d0;
+    color: white;
+}
+
+.card-container {
+  background-color: white;
+  padding: 15px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #8860d0!important;
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+    color: #8860d0!important;
+    opacity: 0.8!important;
+  }
+
+  .container {
+   
+  }

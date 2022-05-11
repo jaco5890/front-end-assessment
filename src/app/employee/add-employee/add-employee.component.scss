@@ -1,0 +1,66 @@
+#addCard {
+    width: 40vw;
+    height: 40vh !important;
+    position: absolute;
+    top: 20vh;
+    left: 50vw;
+    margin-left: -20vw;
+    margin-top: 0vh;
+    z-index: 999;
+}
+#btnClass {
+    margin-bottom: 5px;
+    width: 30%; 
+    margin-bottom: 10px;
+    background-color: #7030A0;
+    color: white;
+    border-radius: 10px;
+}
+
+#saveButton {
+    margin-bottom: 5px;
+    width: 30%; 
+    margin-bottom: 10px;
+    background-color: #110010;
+    color: white;
+    border-radius: 10px;
+}
+
+.icon {
+    color: white;
+    margin-right: 5px;
+}
+
+.titleButton {
+    background-color: #5d60a5;
+    color: white;
+}
+
+#input-field {
+    font-size: x-small;
+    width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #7030A0 !important;
+  }
+  
+::ng-deep.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+.mat-form-field-outline-thick {
+color: #7030A0 !important;
+opacity: 0.8 !important;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: #7030A0;
+} 
+
+.input-container {
+    margin-top: 15px;
+    margin: 15px;
+}
+
+.delete-icon {
+    color: red;
+    cursor: pointer;
+}

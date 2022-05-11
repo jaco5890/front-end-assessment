@@ -5,8 +5,37 @@ mat-card {
 }
 
 mat-card-title-group {
-  
   background:#8860d0 !important;
   color: white;
   padding: 4px;
+}
+
+.card {
+  margin: 0; 
+  padding: 0;
+  border-radius: 20px;
+}
+
+.title-group {
+  padding: 2;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.title-container {
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: medium !important;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.button {
+  padding-right: 5px;
+}
+
+.card-content {
+  padding: 6px;
 }

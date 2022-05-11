@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="background" fxLayoutAlign="space-between center" fxLayout="row wrap">
+      <div style="margin-left: 5px;">
+        {{name}}
+      </div>
+      <button *ngIf="hasButton" type="button" mat-icon-button (click)="onButtonClicked()">
+        <mat-icon class="white-fg" matTooltip = {{tooltip}} *ngIf="buttonIcon === 'qr_code'">{{buttonIcon}}</mat-icon>
+      </button>
+    </div>
+  
+    <div class="card-container">
+      <ng-content #body>
+      </ng-content>
+    </div>
+</div>
