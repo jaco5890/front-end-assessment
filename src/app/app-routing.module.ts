@@ -10,21 +10,21 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./employee/employee.module').then(
+          import('./screens/employee/employee.module').then(
             (mod) => mod.EmployeeModule
           ),
       },
       {
         path: 'employee',
         loadChildren: () =>
-          import('./employee/employee.module').then(
+          import('./screens/employee/employee.module').then(
             (mod) => mod.EmployeeModule
           ),
       },
       {
         path: 'dummy',
         loadChildren: () =>
-          import('./dummy/dummy.module').then(
+          import('./screens/dummy/dummy.module').then(
             (mod) => mod.DummyModule
           ),
       },
