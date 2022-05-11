@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #e8e8e8;
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d6d7d8;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffff;
+}
+html,
+body {
+  height: calc(100% - 20px);
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.full-page {
+  background-color: #110010;
+  height: 100vh !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  position: relative;
+}
+.full-width {
+  width: 100% !important;
+}
+:host ::ng-deep .mat-error {
+  font-size: 0.6rem !important;
+}
+

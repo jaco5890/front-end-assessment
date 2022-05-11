@@ -1,0 +1,9 @@
+<div [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+
+    <mat-nav-list style="  border-top: 4px solid #8860d0;margin-top: 65px;">
+        <a mat-list-item *ngFor="let page of nav" [routerLink]="[page.link]" routerLinkActive="list-item-active" (click)="checkRoute(page,$event)">
+            <mat-icon style="color: white; padding-right: 8px;">{{page?.icon}}</mat-icon>
+            <span style="color: white" [@animateText]="sideNavState ? 'show' : 'hide'">{{ page?.name }} </span>
+        </a>
+    </mat-nav-list>
+</div>

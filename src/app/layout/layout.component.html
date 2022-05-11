@@ -1,0 +1,21 @@
+<!-- PASS LOGO AND BUTTON TYPE TO HEADER -->
+<div [ngClass]="{'full-screen':ls.config.header.fixed}">
+    <assessment-header #assessmentHeader [fixed]='ls.config.header.fixed' [headerHeight]="ls.config.header.headerHeight"  [color]="ls.config.header.backgroundColor" [logo]="ls.config.header.logo" [buttonIcon]="ls.config.header.buttonIcon" (buttonClicked)="sideNavButtonClicked()">
+    </assessment-header>
+
+    <!-- SIDENAV DRAWER -->
+
+    <mat-drawer-container class="full-screen">
+        <mat-drawer #drawer assessmentSidenav class="sideNavBar" mode="side" opened="true">
+            <div assessmentLayout [fixed]='ls.config.header.fixed' [headerHeight]="ls.config.header.headerHeight">
+                <assessment-sidenav></assessment-sidenav>
+            </div>
+        </mat-drawer>
+
+        <div class="pt-{{ls.config.header.headerHeight}}" [@onMainContentChange]="sideNavChange ? 'open': 'close'">
+            <router-outlet>
+            </router-outlet>
+        </div>
+    </mat-drawer-container>
+</div>
+

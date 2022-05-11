@@ -1,0 +1,20 @@
+<div class="full-page" fxLayout="column">
+    <div id="container" fxLayoutAlign="space-between center" fxLayout="row">
+        <div class="header">Employees</div>
+    </div>
+
+    <div class="body" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="text">No employees</span>
+        <button mat-raised-button matTooltip="Add new employee" class="add-btn" (click)="addEmployee()">
+            <mat-icon>add</mat-icon>
+            Add new employee
+        </button>
+    </div>
+
+    <div class="image-container" fxLayout="column" fxLayoutAlign="center center">
+        <img class="image" src="../../assets/images/Icon.JPG" alt="image"/>
+        <span class="text">There is nothing here</span>
+        <span class="text sub-title">Create a new employee by clicking the</span>
+        <span class="text"><b>New employee</b> button to get started</span>
+    </div>
+</div>

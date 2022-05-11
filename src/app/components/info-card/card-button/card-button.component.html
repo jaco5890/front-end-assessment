@@ -1,0 +1,7 @@
+<mat-icon *ngIf="icon != 'delete'" style="height: 20px !important; width: 30px !important; font-size: x-large;cursor: pointer;"
+  (click)="onButtonClicked()">
+  {{icon}}</mat-icon>
+
+<a *ngIf="icon == 'delete'" [matTooltip]="tooltip" type="button" (click)="onButtonClicked()">
+  <img src="./assets/Elements/Elements/delete.svg" *ngIf="icon == 'delete'" alt = ''>
+</a>
