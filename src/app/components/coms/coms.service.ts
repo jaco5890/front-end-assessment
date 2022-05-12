@@ -8,20 +8,20 @@ import { ComsComponent } from './coms.component';
 export class ComsService {
   constructor(private snackBar: MatSnackBar) { }
 
-  showMsg(msg, t) {
-    let color = 'blue-600-bg';
+  showMsg(msg, t?) {
+    let color = 'red';
     switch (t) {
       case 'success':
-        color = 'green-600-bg';
+        color = 'green';
         break;
       case 'warning':
-        color = 'orange-600-bg';
+        color = 'orange';
         break;
       case 'error':
-        color = 'red-600-bg';
+        color = '#fff';
         break;
       case 'info':
-        color = 'blue-600-bg';
+        color = 'blue';
         break;
 
     }
@@ -30,36 +30,7 @@ export class ComsService {
       data: {
         msg
       },
-      panelClass: [color, 'message-box'],
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
-
-  showNetworkMsg(hasNetwork) {
-    let color = 'blue-600-bg';
-    let time = 3000;
-    let msg = '';
-    switch (hasNetwork) {
-      case true:
-        color = 'green-600-bg';
-        time = 3000;
-        msg = ' Your internet has been restored 😀';
-        break;
-      case false:
-        color = 'red-600-bg';
-        time = 300000;
-        msg = ' You do not have internet at the moment, please check your connection 😭';
-        break;
-
-
-    }
-    this.snackBar.openFromComponent(ComsComponent, {
-      duration: time,
-      data: {
-        msg
-      },
-      panelClass: [color, 'message-box'],
+      panelClass: ['red', 'message-box'],
       horizontalPosition: 'right',
       verticalPosition: 'top'
     });

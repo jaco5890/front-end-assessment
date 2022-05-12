@@ -111,8 +111,8 @@
 
                 <mat-form-field appearance="outline"  id="input-field" style="width: 100%;">
                   <mat-label>Seniority</mat-label>
-                  <mat-select style="color: black;" [(value)] ="seniority" formControlName="seniority">
-                    <mat-option *ngFor="let seniority of seniorityArray" [value]="seniority" >
+                  <mat-select style="color: black;" value = "{{seniority}}" formControlName="seniority">
+                    <mat-option *ngFor="let seniority of seniorityArray" value="{{seniority}}" >
                       {{seniority}}
                     </mat-option>
                   </mat-select>
