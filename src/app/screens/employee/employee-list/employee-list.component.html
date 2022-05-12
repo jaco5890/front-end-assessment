@@ -8,15 +8,15 @@
         </button>
     </div>
 
-    <div class="employee-card-container">
+    <div class="employee-card-container" fxLayoutAlign="center center">
         <app-card hasButton="true" name="Filter/Search for employees" fxFlex="100" fxLayout="column">
             <div fxLayout="row" fxLayoutGap="15px">
-                <mat-form-field appearance="outline" id="input-field" style="width: 100%;">
+                <mat-form-field appearance="outline" id="input-field" fxFlex="30">
                     <mat-label>Search</mat-label>
                     <input matInput id = ''>
                 </mat-form-field>
             
-                <mat-form-field appearance="outline"  id="input-field" style="width: 100%;">
+                <mat-form-field appearance="outline"  id="input-field" fxFlex="30">
                 <mat-label>Filter by</mat-label>
                 <mat-select style="color: black;" [(value)] ="selectedFilter">
                     <mat-option *ngFor="let selectedFilter of filterList" [value]="selectedFilter" >
@@ -30,15 +30,19 @@
                 <div *ngFor="let employee of employeeList;let index = index;" fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="employee-row">
                         <span id="index">{{index + 1}}</span>
-                        <span class="information">{{employee.firstName}}</span>
-                        <span class="information">{{employee.lastName}}</span>
-                        <span class="information">{{employee.cellphone}}</span>
+                        <span class="information">{{employee.basicInformation.firstName}}</span>
+                        <span class="information">{{employee.basicInformation.lastName}}</span>
+                        <span class="information">{{employee.basicInformation.contactNumber}}</span>
+                        <div fxLayout="row">
+                            <mat-icon matTooltip="Edit employee" class="edit-icon" (click) = "editEmployee(employee)" style="padding-right: 10px;">edit</mat-icon>
+                            <mat-icon matTooltip="Delete employee" class="icon" (click) = "deleteEmployee(employee._id)">delete</mat-icon>
+                        </div>
                     </div>
                 </div>
             </div>
          </app-card>  
     </div>
 
-    <add-employee (closed)="showAddEmployee = false" (employeeAdded)="addedEmployee($event)"  title="Add " [employee]="{}" *ngIf="showAddEmployee">
+    <add-employee (closed)="showAddEmployee = false" (employeeAdded)="addedEmployee($event)"  title="Add " [employee]="employee" *ngIf="showAddEmployee">
     </add-employee>
 </div>

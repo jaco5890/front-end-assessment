@@ -12,6 +12,9 @@
   background: #d6d7d8;
   border-radius: 10px;
 }
+.message-box {
+  max-width: 450px !important;
+}
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #ffff;

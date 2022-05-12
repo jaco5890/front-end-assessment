@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class EmptyEmployeesComponent implements OnInit {
   showAddEmployee = false;
+  employee: null = null;
   @Output() employeeAdded = new EventEmitter<boolean>();
 
   constructor() { }

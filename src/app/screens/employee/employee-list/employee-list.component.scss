@@ -14,10 +14,6 @@
     border-radius: 15px;
 }
 
-.image {
-
-}
-
 .sub-title {
     padding-top: 15px;
 }
@@ -40,7 +36,7 @@
 }
 
 .employee-card-container {
-    width: 50vw;
+    width: 80vw;
 }
 
 #index {
@@ -58,4 +54,14 @@
 .information {
     color: white;
     font-size: 16px;
+}
+
+.icon {
+    color: red;
+    cursor: pointer;
+}
+
+.edit-icon {
+    color: white;
+    cursor: pointer;
 }

@@ -13,6 +13,6 @@
         <span class="text"><b>New employee</b> button to get started</span>
     </div>
 
-    <add-employee (closed)="showAddEmployee = false" (employeeAdded)="addedEmployee($event)"  title="Add " [employee]="{}" *ngIf="showAddEmployee">
+    <add-employee (closed)="showAddEmployee = false" (employeeAdded)="addedEmployee($event)"  title="Add " [employee]="employee" *ngIf="showAddEmployee">
     </add-employee>
     

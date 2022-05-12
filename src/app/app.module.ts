@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { BaseModule } from './core/base/base.module';
 import { MaterialModule } from './core/material/material.module';
 import { LayoutModule } from './layout/layout.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from './core/http-interceptor-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,10 @@ import { LayoutModule } from './layout/layout.module';
     LayoutModule
   ],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }]
 })
 export class AppModule { }
