@@ -61,7 +61,8 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addedEmployee() {
-
+    console.log('came in here');
+    this.employeeAdded.emit(true);
   }
 
   applyFilter(event){

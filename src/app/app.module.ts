@@ -13,6 +13,9 @@ import { MaterialModule } from './core/material/material.module';
 import { LayoutModule } from './layout/layout.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './core/http-interceptor-service';
+import { RootStoreModule } from './root-store';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { HttpInterceptorService } from './core/http-interceptor-service';
     FormsModule,
     BaseModule,
     MaterialModule,
-    LayoutModule
+    LayoutModule,
+    RootStoreModule,
   ],
   bootstrap: [AppComponent],
   providers: [{

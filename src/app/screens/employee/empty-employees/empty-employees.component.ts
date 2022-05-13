@@ -20,7 +20,6 @@ export class EmptyEmployeesComponent implements OnInit {
   }
 
   addedEmployee() {
-    console.log('employee was added');
     this.employeeAdded.emit(true);
   }
 

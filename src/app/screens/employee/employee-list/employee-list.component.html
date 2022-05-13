@@ -1,6 +1,6 @@
 <div class="body" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span class="text">There are 4 employees</span>
+        <span class="text">There are {{employeeList.length}} employees</span>
 
         <button mat-raised-button matTooltip="Add new employee" class="add-btn" (click)="addEmployee()">
             <mat-icon>add</mat-icon>
@@ -53,8 +53,8 @@
                     <mat-header-cell *matHeaderCellDef fxFlex="10" style="color: grey;">Actions </mat-header-cell>
                     <mat-cell *matCellDef="let element" fxFlex="10">
                         <div fxLayout="row">
-                            <mat-icon matTooltip="Edit employee" class="edit-icon" (click) = "editEmployee(element)" style="padding-right: 10px;">edit</mat-icon>
-                            <mat-icon class = "icon-padding" matTooltip="Delete employee" class="icon" (click) = "deleteEmployee(element._id)">delete</mat-icon>
+                            <mat-icon matTooltip="Edit employee" class="edit-icon" (click) = "editEmployee(element)">edit</mat-icon>
+                            <mat-icon matTooltip="Delete employee" class="icon" (click) = "deleteEmployee(element._id)">delete</mat-icon>
                         </div>
                     </mat-cell>
                   </ng-container>
