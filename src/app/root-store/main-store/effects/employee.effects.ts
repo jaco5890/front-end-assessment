@@ -50,7 +50,7 @@ export class EmployeeEffects {
     ofType(EmployeeActionTypes.UPDATE_EMPLOYEE),
     switchMap((action: any) => {
       return this.service.updateEmployee(action.payload, action.id).pipe(
-        map((res: any) => new UpdateEmployeeSuccess(res)),
+        map((res: any) => new UpdateEmployeeSuccess(res.data)),
         catchError((error) => of(new UpdateEmployeeFailure(error)))
       );
     })

@@ -14,6 +14,7 @@ import {Employee} from '../../models/employee.model'
 })
 export class EmployeeComponent implements OnInit {
   private ngUnsubscribe = new Subject();
+  setDifferentArray = false;
   employeesLoading$: Observable<any> = this.store.select(getEmployeeListLoading);
   employeesError$: Observable<any> = this.store.select(getEmployeeListError);
 
@@ -32,9 +33,13 @@ export class EmployeeComponent implements OnInit {
     .select(getEmployeeList)
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employees: any) => {
+      console.log(employees, 'employees')
       if (employees) {
-        console.log(employees);
-        this.employeeList = employees.data;
+        if(this.setDifferentArray){
+         setTimeout(() =>  this.employeeList = employees);
+        }else {
+          this.employeeList = employees.data;
+        }
       }
       this.loadingService.closeBlockingLoader();
     });
@@ -48,7 +53,8 @@ export class EmployeeComponent implements OnInit {
   }
 
   addedEmployee() {
-   this.getAllEmployees();
+    this.setDifferentArray = true;
+    this.getAllEmployees();
   }
 
 }

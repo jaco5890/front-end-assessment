@@ -1,8 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ComsModule } from 'src/app/components/coms/coms.module';
 import { ComsService } from 'src/app/components/coms/coms.service';
 import { LoadingService } from 'src/app/components/loading/loading.service';
+import { RootStoreState } from 'src/app/root-store';
+import { getEmployeeList } from 'src/app/root-store/main-store/selectors/employee.selector';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -27,10 +32,12 @@ export class EmployeeListComponent implements OnInit {
     "actions",
   ];
   dataSource = new MatTableDataSource();
+  private ngUnsubscribe = new Subject();
 
   constructor(private loadingService: LoadingService, 
     private employeeService: EmployeeService, 
-    private comms: ComsService) {
+    private comms: ComsService,
+    private store: Store<RootStoreState.RootState>) {
     }
 
   ngOnInit(): void {
@@ -61,7 +68,6 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addedEmployee() {
-    console.log('came in here');
     this.employeeAdded.emit(true);
   }
 

@@ -111,9 +111,10 @@ export function reducer(
     }
 
     case EmployeeActionTypes.CREATE_EMPLOYEE_SUCCESS: {
+      console.log(state, 'state');
       return {
         ...state,
-        employees: [...state.employee.employees, action.payload],
+        employees: [...state.employees.data, action.payload],
         createEmployeeSuccess: true,
         createEmployeeLoading: false,
         createEmployeeError: false,

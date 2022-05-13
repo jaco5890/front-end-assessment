@@ -105,8 +105,8 @@ export class AddEmployeeComponent implements OnInit {
     .select(createEmployeeSuccess)
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employee) => {
-      debugger
       if (employee) {
+        this.comms.showMsg("Employee added");
         this.employeeAdded.emit(true);
         this.closed.emit(false);
       }
@@ -129,6 +129,7 @@ export class AddEmployeeComponent implements OnInit {
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employee) => {
       if (employee) {
+        this.comms.showMsg("Employee updated");
         this.employeeAdded.emit(true);
         this.closed.emit(false);
       }

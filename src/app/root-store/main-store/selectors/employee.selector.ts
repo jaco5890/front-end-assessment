@@ -50,7 +50,7 @@ export const createEmployeeLoading = createSelector(
 
 export const createEmployeeError = createSelector(
     getMainAppState,
-  (state) => state.employee.createEmployeeLoading
+  (state) => state.employee.createEmployeeError
 );
 
 export const getCreatedEmployee = createSelector(
