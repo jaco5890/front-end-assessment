@@ -96,7 +96,7 @@
       <form [formGroup]="employeeForm">
         <div formArrayName="skills">
           <div fxLayout="row" *ngFor="let skill of skills.controls; let i = index"  class="input-container"  style="padding-top: 10px">
-            <div [formGroup]="skill" fxLayout="row" fxLayoutGap="15px">
+            <div [formGroup]="skill" fxLayout="row" fxLayoutGap="15px" fxFlex="100">
                 <mat-form-field appearance="outline" id="input-field" style="width: 100%;">
                   <mat-label>Skill</mat-label>
                   <input matInput formControlName="skill">

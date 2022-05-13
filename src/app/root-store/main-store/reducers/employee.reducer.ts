@@ -1,7 +1,7 @@
 import { EmployeeActions, EmployeeActionTypes } from "../actions/employee.actions";
 
 export interface EmployeeState {
-  employees: any[];
+  employees: any;
   employeesLoading: boolean;
   employeesError: boolean;
 

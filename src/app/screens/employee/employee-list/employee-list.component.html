@@ -11,7 +11,7 @@
     <div class="employee-card-container" fxLayoutAlign="center center">
         <app-card hasButton="true" name="Filter/Search for employees" fxFlex="100" fxLayout="column">
             <div fxLayout="row" fxLayoutGap="15px">
-                <mat-form-field appearance="outline" id="input-field" fxFlex="30">
+                <mat-form-field appearance="outline" id="input-field" fxFlex="45">
                     <mat-label>Search</mat-label>
                     <input matInput #input (keyup) = "applyFilter($event)">
                 </mat-form-field>
@@ -27,24 +27,31 @@
                         </div>
                     </mat-cell>
                   </ng-container>
+
+                  <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef fxFlex="20">ID</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="20" class="row" >
+                      {{element.ID}}
+                    </mat-cell>
+                  </ng-container>
               
                   <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef fxFlex="25">Name</mat-header-cell>
-                    <mat-cell *matCellDef="let element" fxFlex="25" class="row" >
+                    <mat-header-cell *matHeaderCellDef fxFlex="20">Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="20" class="row" >
                       {{element.basicInformation.firstName}}
                     </mat-cell>
                   </ng-container>
         
                   <ng-container matColumnDef="surname">
-                    <mat-header-cell *matHeaderCellDef fxFlex="25">Surname</mat-header-cell>
-                    <mat-cell *matCellDef="let element" fxFlex="25" class="row" >
+                    <mat-header-cell *matHeaderCellDef fxFlex="20">Surname</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="20" class="row" >
                       {{element.basicInformation.lastName}}
                     </mat-cell>
                   </ng-container>
         
                   <ng-container matColumnDef="cellphone">
-                    <mat-header-cell *matHeaderCellDef fxFlex="20">Cellphone</mat-header-cell>
-                    <mat-cell *matCellDef="let element" fxFlex="20" class="row" >
+                    <mat-header-cell *matHeaderCellDef fxFlex="15">Cellphone</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="15" class="row" >
                       {{element.basicInformation.contactNumber}}
                     </mat-cell>
                   </ng-container>

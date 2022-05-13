@@ -26,6 +26,7 @@ export class EmployeeListComponent implements OnInit {
   searchTerm: any;
   displayedColumns: string[] = [
     "index",
+    "id",
     "name",
     "surname",
     "cellphone",
