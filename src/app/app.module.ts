@@ -33,6 +33,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MaterialModule,
     LayoutModule,
     RootStoreModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 500, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [{

@@ -105,7 +105,6 @@ export function reducer(
     case EmployeeActionTypes.CREATE_EMPLOYEE: {
       return {
         ...state,
-        // employees: [...state.employee, action.payload],
         createEmployeeLoading: true,
         createEmployeeError: false,
       };
@@ -114,6 +113,7 @@ export function reducer(
     case EmployeeActionTypes.CREATE_EMPLOYEE_SUCCESS: {
       return {
         ...state,
+        employees: [...state.employee.employees, action.payload],
         createEmployeeSuccess: true,
         createEmployeeLoading: false,
         createEmployeeError: false,

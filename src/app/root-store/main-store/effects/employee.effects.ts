@@ -39,7 +39,7 @@ export class EmployeeEffects {
     ofType(EmployeeActionTypes.CREATE_EMPLOYEE),
     switchMap((action: any) => {
       return this.service.createEmployee(action.payload).pipe(
-        map((res: any) => new CreateEmployeeSuccess(res)),
+        map((res: any) => new CreateEmployeeSuccess(res.data)),
         catchError((error) => of(new CreateEmployeeFailure(error)))
       );
     })

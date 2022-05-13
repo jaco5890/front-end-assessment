@@ -105,6 +105,7 @@ export class AddEmployeeComponent implements OnInit {
     .select(createEmployeeSuccess)
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employee) => {
+      debugger
       if (employee) {
         this.employeeAdded.emit(true);
         this.closed.emit(false);
