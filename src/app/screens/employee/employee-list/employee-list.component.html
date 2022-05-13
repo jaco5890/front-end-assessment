@@ -13,20 +13,58 @@
             <div fxLayout="row" fxLayoutGap="15px">
                 <mat-form-field appearance="outline" id="input-field" fxFlex="30">
                     <mat-label>Search</mat-label>
-                    <input matInput id = ''>
-                </mat-form-field>
-            
-                <mat-form-field appearance="outline"  id="input-field" fxFlex="30">
-                <mat-label>Filter by</mat-label>
-                <mat-select style="color: black;" [(value)] ="selectedFilter">
-                    <mat-option *ngFor="let selectedFilter of filterList" [value]="selectedFilter" >
-                    {{selectedFilter}}
-                    </mat-option>
-                </mat-select>
+                    <input matInput #input (keyup) = "applyFilter($event)">
                 </mat-form-field>
             </div>
 
-            <div fxLayout="column">
+            <div class = "table-container">
+                <mat-table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+                  <ng-container matColumnDef="index">
+                    <mat-header-cell *matHeaderCellDef fxFlex="20">Index</mat-header-cell>
+                    <mat-cell *matCellDef="let i = index" fxFlex="20" class="row" >
+                        <div id="index">
+                            {{i + 1}}
+                        </div>
+                    </mat-cell>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef fxFlex="25">Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="25" class="row" >
+                      {{element.basicInformation.firstName}}
+                    </mat-cell>
+                  </ng-container>
+        
+                  <ng-container matColumnDef="surname">
+                    <mat-header-cell *matHeaderCellDef fxFlex="25">Surname</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="25" class="row" >
+                      {{element.basicInformation.lastName}}
+                    </mat-cell>
+                  </ng-container>
+        
+                  <ng-container matColumnDef="cellphone">
+                    <mat-header-cell *matHeaderCellDef fxFlex="20">Cellphone</mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="20" class="row" >
+                      {{element.basicInformation.contactNumber}}
+                    </mat-cell>
+                  </ng-container>
+        
+                  <ng-container fxLayoutAllign="end center " matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef fxFlex="10" style="color: grey;">Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let element" fxFlex="10">
+                        <div fxLayout="row">
+                            <mat-icon matTooltip="Edit employee" class="edit-icon" (click) = "editEmployee(element)" style="padding-right: 10px;">edit</mat-icon>
+                            <mat-icon class = "icon-padding" matTooltip="Delete employee" class="icon" (click) = "deleteEmployee(element._id)">delete</mat-icon>
+                        </div>
+                    </mat-cell>
+                  </ng-container>
+              
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                </mat-table>
+              </div>
+
+            <!-- <div fxLayout="column">
                 <div *ngFor="let employee of employeeList;let index = index;" fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="employee-row">
                         <span id="index">{{index + 1}}</span>
@@ -39,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
          </app-card>  
     </div>
 
