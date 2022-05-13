@@ -138,8 +138,11 @@ export function reducer(
     }
 
     case EmployeeActionTypes.UPDATE_EMPLOYEE_SUCCESS: {
+     let itemIndex = state.employees.data.findIndex(item => item._id == action.payload._id);
+     state.employees.data[itemIndex] = action.payload;
       return {
         ...state,
+        employees: [...state.employees.data],
         updateEmployeeSuccess: true,
         updateEmployeeLoading: false,
         updateEmployeeError: false,

@@ -49,10 +49,13 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(id){
     this.loadingService.openBlockingLoader("Deleting employee");
     this.employeeService.deleteEmployee(id).subscribe((res: any) => {
-      this.comms.showMsg("User deleted successfully");
+      const index = this.employeeList.findIndex(employee => employee._id === id);
+      this.employeeList.splice(index, 1);
+      this.dataSource = new MatTableDataSource(this.employeeList);
+      this.comms.showMsg("Employee deleted successfully");
       this.loadingService.closeBlockingLoader();
     },error => {
-      this.comms.showMsg("Failed to delete user");
+      this.comms.showMsg("Failed to delete employee");
       this.loadingService.closeBlockingLoader();
     })
   }

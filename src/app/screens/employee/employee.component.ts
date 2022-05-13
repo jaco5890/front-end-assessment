@@ -33,7 +33,6 @@ export class EmployeeComponent implements OnInit {
     .select(getEmployeeList)
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employees: any) => {
-      console.log(employees, 'employees')
       if (employees) {
         if(this.setDifferentArray){
          setTimeout(() =>  this.employeeList = employees);
