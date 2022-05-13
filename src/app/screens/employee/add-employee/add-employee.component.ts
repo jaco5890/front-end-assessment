@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ComsService } from 'src/app/components/coms/coms.service';
 import { LoadingService } from 'src/app/components/loading/loading.service';
+import { RootStoreState } from 'src/app/root-store';
+import { CreateEmployee, UpdateEmployee } from 'src/app/root-store/main-store/actions/employee.actions';
+import { createEmployeeError, createEmployeeLoading, createEmployeeSuccess, updateEmployeeError, updateEmployeeLoading, updateEmployeeSuccess } from 'src/app/root-store/main-store/selectors/employee.selector';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -10,6 +16,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit {
+  private ngUnsubscribe = new Subject();
   @Input() title : string;
   @Output() closed = new EventEmitter();
   @Output() employeeAdded = new EventEmitter<boolean>();
@@ -17,15 +24,18 @@ export class AddEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   selectedIndex: number = 0;
   maxNumberOfTabs = 3;
-  seniorityArray = ['Junior', 'Intermediate', 'Senior']
+  seniorityArray = ['Junior', 'Intermediate', 'Senior'];
+
+  newEmployeeLoading$: Observable<any> = this.store.select(createEmployeeLoading);
+  newEmployeeError$: Observable<any> = this.store.select(createEmployeeError);
+  updateEmployeeLoading$: Observable<any> = this.store.select(updateEmployeeLoading);
+  updateEmployeeError$: Observable<any> = this.store.select(updateEmployeeError);
 
   constructor(private readonly fb: FormBuilder,
-    private loadingService: LoadingService, 
-    private employeeService: EmployeeService, 
+    private store: Store<RootStoreState.RootState>, 
     private comms: ComsService) { }
 
   ngOnInit(): void {
-    console.log(this.employee)
     this.employeeForm = this.fb.group({
       basicInformation: this.fb.group({
         firstName: ['', Validators.required],
@@ -84,34 +94,56 @@ export class AddEmployeeComponent implements OnInit {
       skills: this.employeeForm.value.skills
     }
     if(this.title === 'Add '){
-      this.addEmployee(employeeObject)
+      this.addEmployee(employeeObject);
     }else {
       this.updateEmployee(employeeObject);
     }
   }
 
-  addEmployee(employeeObject) {
-    this.loadingService.openBlockingLoader("Adding new employee");
-    this.employeeService.createEmployee(employeeObject).subscribe((res: any) => {
-      this.loadingService.closeBlockingLoader();
-      this.comms.showMsg("Employee added successfully");
-    }, error => {
-      this.comms.showMsg("Failed to add new employee");
-      this.loadingService.closeBlockingLoader();
-    })
-    this.employeeAdded.emit(true);
+  addEmployee(employeeObject){
+    this.store
+    .select(createEmployeeSuccess)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((employee) => {
+      if (employee) {
+        this.comms.showMsg("Employee added");
+        this.employeeAdded.emit(true);
+        this.closed.emit(false);
+      }
+    });
+
+    this.store
+    .select(createEmployeeError)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((error) => {
+      if (error) {
+        this.comms.showMsg('Failed to add employee');
+      }
+    });
+   this.store.dispatch(new CreateEmployee(employeeObject));
   }
 
   updateEmployee(employeeObject){
-    this.loadingService.openBlockingLoader("Updating employee");
-    this.employeeService.updateEmployee(employeeObject, this.employee._id).subscribe((res: any) => {
-      this.loadingService.closeBlockingLoader();
-      this.comms.showMsg("Employee updated successfully");
-    }, error => {
-      this.comms.showMsg("Failed to update employee");
-      this.loadingService.closeBlockingLoader();
-    })
-    this.employeeAdded.emit(true);
+    this.store
+    .select(updateEmployeeSuccess)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((employee) => {
+      if (employee) {
+        this.comms.showMsg("Employee updated");
+        this.employeeAdded.emit(true);
+        this.closed.emit(false);
+      }
+    });
+
+    this.store
+    .select(updateEmployeeError)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((error) => {
+      if (error) {
+        this.comms.showMsg("Failed to update employee");
+      }
+    });
+   this.store.dispatch(new UpdateEmployee(employeeObject, this.employee._id));
   }
 
   nextStep() {
@@ -138,6 +170,11 @@ export class AddEmployeeComponent implements OnInit {
 
   removeSkill(lessonIndex: number) {
     this.skills.removeAt(lessonIndex);
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 }

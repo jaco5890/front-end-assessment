@@ -3,11 +3,11 @@
         <div class="header">Employees</div>
     </div>
 
-    <div *ngIf="employeeList.length === 0">
-        <app-empty-employees (employeeAdded)="employeeAdded($event)"></app-empty-employees>
+    <div *ngIf="employeeList && employeeList.length === 0">
+        <app-empty-employees></app-empty-employees>
     </div>
 
-    <div *ngIf="employeeList.length !== 0">
-        <employee-list [employeeList]="employeeList"></employee-list>
+    <div *ngIf="employeeList && employeeList.length !== 0">
+        <employee-list [employeeList]="employeeList" (employeeAdded)="addedEmployee($event)"></employee-list>
     </div>
 </div>
