@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { LoadingService } from 'src/app/components/loading/loading.service';
 import { RootStoreState } from 'src/app/root-store';
-import { ClearEmployeeList, GetEmployeeList } from 'src/app/root-store/main-store/actions/employee.actions';
+import { ClearEmployeeList, GetEmployeeList, GetEmployeeListSuccess } from 'src/app/root-store/main-store/actions/employee.actions';
 import { getEmployeeList, getEmployeeListError, getEmployeeListLoading } from 'src/app/root-store/main-store/selectors/employee.selector';
 import {Employee} from '../../models/employee.model'
 @Component({
@@ -14,7 +14,7 @@ import {Employee} from '../../models/employee.model'
 })
 export class EmployeeComponent implements OnInit {
   private ngUnsubscribe = new Subject();
-  setDifferentArray = false;
+  setDifferentArray = true;
   employeesLoading$: Observable<any> = this.store.select(getEmployeeListLoading);
   employeesError$: Observable<any> = this.store.select(getEmployeeListError);
 
@@ -24,7 +24,8 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.openBlockingLoader("Retrieving employees");
-    this.makeGetAllEmployeesCall()
+    this.employeeList = [];
+    this.makeGetAllEmployeesCall();
     this.getAllEmployees();
   }
 
@@ -34,11 +35,7 @@ export class EmployeeComponent implements OnInit {
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((employees: any) => {
       if (employees) {
-        if(this.setDifferentArray){
-         setTimeout(() =>  this.employeeList = employees);
-        }else {
-          this.employeeList = employees.data;
-        }
+        setTimeout(() =>this.employeeList = employees);
       }
       this.loadingService.closeBlockingLoader();
     });
@@ -52,7 +49,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   addedEmployee() {
-    this.setDifferentArray = true;
     this.getAllEmployees();
   }
 

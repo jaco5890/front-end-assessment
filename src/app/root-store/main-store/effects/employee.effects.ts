@@ -17,7 +17,7 @@ export class EmployeeEffects {
     ofType(EmployeeActionTypes.GET_EMPLOYEE_LIST),
     switchMap((action: any) => {
       return this.service.getAllEmployees().pipe(
-        map((res: any) => new GetEmployeeListSuccess(res)),
+        map((res: any) => new GetEmployeeListSuccess(res.data)),
         catchError((error) => of(new GetEmployeeListFailure(error)))
       );
     })

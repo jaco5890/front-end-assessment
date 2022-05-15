@@ -4,10 +4,10 @@
     </div>
 
     <div *ngIf="employeeList && employeeList.length === 0">
-        <app-empty-employees></app-empty-employees>
+        <app-empty-employees (employeeAdded)="addedEmployee($event)"></app-empty-employees>
     </div>
 
     <div *ngIf="employeeList && employeeList.length !== 0">
-        <employee-list [employeeList]="employeeList" (employeeAdded)="addedEmployee($event)"></employee-list>
+        <employee-list  (employeeAdded)="addedEmployee($event)"></employee-list>
     </div>
 </div>

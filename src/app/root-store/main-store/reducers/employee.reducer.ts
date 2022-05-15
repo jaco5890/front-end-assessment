@@ -111,10 +111,9 @@ export function reducer(
     }
 
     case EmployeeActionTypes.CREATE_EMPLOYEE_SUCCESS: {
-      console.log(state, 'state');
       return {
         ...state,
-        employees: [...state.employees.data, action.payload],
+        employees: [...state.employees, action.payload],
         createEmployeeSuccess: true,
         createEmployeeLoading: false,
         createEmployeeError: false,
@@ -138,11 +137,11 @@ export function reducer(
     }
 
     case EmployeeActionTypes.UPDATE_EMPLOYEE_SUCCESS: {
-     let itemIndex = state.employees.data.findIndex(item => item._id == action.payload._id);
-     state.employees.data[itemIndex] = action.payload;
+     let itemIndex = state.employees.findIndex(item => item._id == action.payload._id);
+     state.employees[itemIndex] = action.payload;
       return {
         ...state,
-        employees: [...state.employees.data],
+        employees: [...state.employees],
         updateEmployeeSuccess: true,
         updateEmployeeLoading: false,
         updateEmployeeError: false,

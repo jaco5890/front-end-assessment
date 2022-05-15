@@ -18,7 +18,8 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmployeeListComponent implements OnInit {
   @ViewChild('table') table: MatTable<any>;
   @Output() employeeAdded = new EventEmitter<boolean>();
-  @Input() employeeList : any;
+  employeeList = []
+  // @Input() employeeList : any;
   showAddEmployee = false;
   employee: null = null;
   filterList = ['name', 'last name', 'cellphone'];
@@ -42,6 +43,20 @@ export class EmployeeListComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.store
+    .select(getEmployeeList)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((employees: any) => {
+      if (employees) {
+        setTimeout(() => {
+          this.employeeList = employees;
+          this.setEmployeeTable();
+        })
+      }
+    });
+  }
+
+  setEmployeeTable(){
     this.dataSource = new MatTableDataSource(this.employeeList);
     this.dataSource.filterPredicate = (data: any, filter: string) => !filter || data.basicInformation.firstName.includes(filter) 
     || data.basicInformation.lastName.includes(filter);
