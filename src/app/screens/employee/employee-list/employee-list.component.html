@@ -15,6 +15,15 @@
                     <mat-label>Search</mat-label>
                     <input matInput #input (keyup) = "applyFilter($event)">
                 </mat-form-field>
+
+                <mat-form-field appearance="outline"  id="input-field" fxFlex = "25">
+                  <mat-label>Filter by date</mat-label>
+                  <mat-select style="color: black;" value = "{{date}}" [(ngModel)]="selectedDate" (selectionChange)="applyDateFilter()">
+                    <mat-option *ngFor="let date of dateArray" value="{{date}}" >
+                      {{date}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
             </div>
 
             <div class = "table-container">

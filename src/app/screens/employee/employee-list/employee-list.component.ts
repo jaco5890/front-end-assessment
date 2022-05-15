@@ -19,11 +19,10 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild('table') table: MatTable<any>;
   @Output() employeeAdded = new EventEmitter<boolean>();
   employeeList = []
-  // @Input() employeeList : any;
   showAddEmployee = false;
   employee: null = null;
-  filterList = ['name', 'last name', 'cellphone'];
-  selectedFilter: any;
+  dateArray = [1997,2020, 2021, 2022];
+  selectedDate: any;
   searchTerm: any;
   displayedColumns: string[] = [
     "index",
@@ -59,7 +58,7 @@ export class EmployeeListComponent implements OnInit {
   setEmployeeTable(){
     this.dataSource = new MatTableDataSource(this.employeeList);
     this.dataSource.filterPredicate = (data: any, filter: string) => !filter || data.basicInformation.firstName.includes(filter) 
-    || data.basicInformation.lastName.includes(filter);
+    || data.basicInformation.lastName.includes(filter) || data.basicInformation.birthday.includes(filter)
   }
 
   deleteEmployee(id){
@@ -93,5 +92,9 @@ export class EmployeeListComponent implements OnInit {
   applyFilter(event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim();
+  }
+
+  applyDateFilter(){
+    this.dataSource.filter = this.selectedDate.trim();
   }
 }
